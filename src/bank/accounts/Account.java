@@ -1,7 +1,6 @@
 package bank.accounts;
 
 public class Account {
-
     protected long balance;
     protected String namesOwner;
 
