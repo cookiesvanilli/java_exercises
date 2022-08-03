@@ -10,8 +10,8 @@ public class FoodBasket {
         int[] prices = {100, 200, 300};
         int[] count = {0, 0, 0};
 
-        int productNumber = 0; // номер продукта
-        int productCount = 0; // количество
+        int productNumber; // номер продукта
+        int productCount; // количество
         int currentPrice; // prices[productNumber]; //цена продукта в массиве цен
         int sumProducts = 0; // итого
 
@@ -34,8 +34,18 @@ public class FoodBasket {
 
             String[] productAndCount = input.split(" ");// массив строк из введенной строки пользователя
             //System.out.println(Arrays.toString(productAndCount));
-            productNumber = Integer.parseInt(productAndCount[0]) - 1; // индекс товара
-            productCount = Integer.parseInt(productAndCount[1]); // количество товара
+
+            if (productAndCount.length != 2) {
+                System.out.println("Select the product and quantity!!!");
+                continue;
+            }
+            try {
+                productNumber = Integer.parseInt(productAndCount[0]) - 1; // индекс товара
+                productCount = Integer.parseInt(productAndCount[1]); // количество товара
+            } catch (NumberFormatException e) {
+                System.out.println("Enter a number!!!");
+                continue;
+            }
 
             if (productNumber >= 0 && productNumber < products.length) {
                 if (productCount > 0) {
