@@ -2,7 +2,7 @@ package bank.clients;
 
 import bank.accounts.Account;
 
-public class Client {
+public class Client implements MoneyTarget {
     protected String name;
     public Account[] accounts;
 
@@ -40,4 +40,16 @@ public class Client {
         System.out.println("Мест для добавления нового счёта нет! :(");
     }
 
+    @Override
+    public boolean acceptMoney(int money) {
+        for (int i = 0; i < accounts.length; i++) {
+            if (accounts[i] != null) {
+                if (accounts[i].add(money)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }

@@ -14,4 +14,27 @@ public class CreditAccount extends Account {
             return true;
         }
     }
+
+    @Override
+    public boolean transfer(Account accountTo, int amount) {
+        boolean canPay = balance + amount > 0;
+
+        if (canPay) {
+            if (accountTo.add(amount)) {
+                return super.pay(amount);
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean acceptMoney(int money) {
+        if ((balance + money) < 0) {
+            return true;
+        }
+        return false;
+    }
+
 }

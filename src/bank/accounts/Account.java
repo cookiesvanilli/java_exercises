@@ -1,6 +1,8 @@
 package bank.accounts;
 
-public class Account {
+import bank.clients.MoneyTarget;
+
+public abstract class Account implements MoneyTarget {
     protected long balance;
     protected String namesOwner;
 
@@ -22,5 +24,7 @@ public class Account {
     public long getBalance() {
         return this.balance;
     }
+
+    public abstract boolean transfer(Account accountTo, int amount);
 
 }
